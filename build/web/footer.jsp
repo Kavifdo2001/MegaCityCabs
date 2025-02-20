@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<style>
+<!--<style>
     /* Ensure the footer stays at the bottom */
     html, body {
         height: 100%;
@@ -44,14 +44,14 @@
     footer a:hover {
         color: #ecf0f1; /* Light gray */
     }
-</style>
+</style>-->
 
 
 <!-- Back to Top -->
         <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
 
         
-<!--         Footer Start 
+         <!--Footer Start--> 
         <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
             <div class="container py-5">
                 <div class="row g-5">
@@ -113,14 +113,14 @@
                 </div>
             </div>
         </div>
-         Footer End -->
+         <!--Footer End--> 
         
         
 
-<footer>
+<!--<footer>
     &copy; 2025 Car Rental System | All rights reserved.
     <br>
     <a href="privacy.jsp">Privacy Policy</a> | <a href="terms.jsp">Terms of Service</a>
-</footer>
+</footer>-->
 
 

@@ -19,10 +19,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+        // Extract form data
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-       
+
+        // Validate form data
         if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             request.setAttribute("errorMessage", "All fields are required.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -34,9 +35,11 @@ public class LoginServlet extends HttpServlet {
         ResultSet rs = null;
 
         try {
+            // Establish database connection
             conn = DBConnection.getConnection();
-            
-            String sql = "SELECT id, name, email, password FROM users WHERE email = ?";
+
+            // Query to retrieve the user by email
+            String sql = "SELECT id, name, email, password, role FROM users WHERE email = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
 
@@ -44,27 +47,33 @@ public class LoginServlet extends HttpServlet {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Retrieve the hashed password from the database
+                // Retrieve the hashed password and role from the database
                 String hashedPassword = rs.getString("password");
+                String role = rs.getString("role");
 
                 // Verify the password using BCrypt
                 if (BCrypt.checkpw(password, hashedPassword)) {
                     // Password matches, log the user in
                     String userName = rs.getString("name");
 
-                    // Store the user's name in the session
+                    // Store the user's name and role in the session
                     HttpSession session = request.getSession();
                     session.setAttribute("userName", userName);
+                    session.setAttribute("userRole", role);
 
-                    // Redirect to the home page
-                    response.sendRedirect("index.jsp");
+                    // Redirect based on the user's role
+                    if ("admin".equalsIgnoreCase(role)) {
+                        response.sendRedirect("admin.jsp"); // Redirect to admin page
+                    } else {
+                        response.sendRedirect("index.jsp"); // Redirect to home page
+                    }
                     return;
                 } else {
                     // Password does not match
                     request.setAttribute("errorMessage", "Invalid email or password.");
                 }
             } else {
-
+                // No user found with the given email
                 request.setAttribute("errorMessage", "Invalid email or password.");
             }
         } catch (SQLException e) {
@@ -91,6 +100,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
+        // Forward the request back to the login page to display the error message
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }
