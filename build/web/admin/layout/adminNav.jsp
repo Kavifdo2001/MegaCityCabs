@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
 <%
     String userName = (String) session.getAttribute("userName");
 %>
@@ -54,48 +56,11 @@
             <div style="float: right;">
                 <% if (userName != null) { %>
                     <span style="color: white; margin-right: 15px;">Welcome, <%= userName %>!</span>
-                    <a href="logout.jsp" class="btn btn-primary">Logout</a>
+                    <a href="<%= request.getContextPath() %>/LogoutServlet" class="btn btn-primary">Logout</a>
                 <% } else { %>
-                    <a href="<%= request.getContextPath() %>/LogoutServlet" class="btn btn-primary">Login</a>
+                    <a href="login.jsp" class="btn btn-primary">Login</a>
                     <a href="register.jsp" class="btn btn-primary">Register</a>
                 <% } %>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="container">
-            <h1>Admin Dashboard</h1>
-            <p>Welcome to the admin panel. Here you can manage your application.</p>
-
-            <!-- Example Cards -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Users</h5>
-                            <p class="card-text">Manage users and their permissions.</p>
-                            <a href="#" class="btn btn-primary">Go to Users</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Products</h5>
-                            <p class="card-text">Manage products and inventory.</p>
-                            <a href="#" class="btn btn-primary">Go to Products</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Settings</h5>
-                            <p class="card-text">Configure system settings.</p>
-                            <a href="#" class="btn btn-primary">Go to Settings</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 

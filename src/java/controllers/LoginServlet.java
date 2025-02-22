@@ -19,11 +19,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Extract form data
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Validate form data
         if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             request.setAttribute("errorMessage", "All fields are required.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -35,52 +34,45 @@ public class LoginServlet extends HttpServlet {
         ResultSet rs = null;
 
         try {
-            // Establish database connection
             conn = DBConnection.getConnection();
 
-            // Query to retrieve the user by email
             String sql = "SELECT id, name, email, password, role FROM users WHERE email = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
 
-            // Execute the query
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Retrieve the hashed password and role from the database
                 String hashedPassword = rs.getString("password");
                 String role = rs.getString("role");
 
-                // Verify the password using BCrypt
                 if (BCrypt.checkpw(password, hashedPassword)) {
-                    // Password matches, log the user in
                     String userName = rs.getString("name");
 
-                    // Store the user's name and role in the session
                     HttpSession session = request.getSession();
                     session.setAttribute("userName", userName);
                     session.setAttribute("userRole", role);
 
-                    // Redirect based on the user's role
                     if ("admin".equalsIgnoreCase(role)) {
-                        response.sendRedirect("admin.jsp"); // Redirect to admin page
+//                        response.sendRedirect("admin.jsp"); 
+                        response.sendRedirect(request.getContextPath() + "/admin/adminIndex.jsp"); 
                     } else {
-                        response.sendRedirect("index.jsp"); // Redirect to home page
+                        response.sendRedirect("index.jsp");
                     }
                     return;
                 } else {
-                    // Password does not match
+                    
                     request.setAttribute("errorMessage", "Invalid email or password.");
                 }
             } else {
-                // No user found with the given email
+                
                 request.setAttribute("errorMessage", "Invalid email or password.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "An error occurred during login. Please try again.");
         } finally {
-            // Close resources
+            
             if (rs != null) {
                 try {
                     rs.close();
@@ -100,7 +92,6 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        // Forward the request back to the login page to display the error message
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }

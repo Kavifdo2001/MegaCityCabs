@@ -82,7 +82,7 @@
                         <div>
                             <% if (userName != null) { %>
                                 <span style="color: black; margin-right: 15px;">Hello, <%= userName %>!</span>
-                                <a href="logout.jsp" class="btn btn-primary rounded-pill py-2 px-4">Logout</a>
+                                <a href="<%= request.getContextPath() %>/LogoutServlet" class="btn btn-primary rounded-pill py-2 px-4">Logout</a>
                             <% } else { %>
                                 <a href="login.jsp" class="btn btn-primary rounded-pill py-2 px-4">Login</a>
                                 <a href="register.jsp" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
