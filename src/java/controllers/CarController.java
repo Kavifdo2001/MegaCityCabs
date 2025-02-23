@@ -14,7 +14,6 @@ public class CarController {
     
     private CarService carService = new CarService();
 
-    // Get all cars
     @GET
     @Path("/getAllCars") 
     public Response getAllCars() {
@@ -22,7 +21,6 @@ public class CarController {
         return Response.ok(cars).build();
     }
 
-    // Get car by ID
     @GET
     @Path("/{id}")
     public Response getCarById(@PathParam("id") int id) {
@@ -34,7 +32,6 @@ public class CarController {
         }
     }
 
-    // Add a new car
     @POST
     public Response addCar(Car car) {
         boolean created = carService.addCar(car);
@@ -44,7 +41,6 @@ public class CarController {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to add car").build();
     }
 
-    // Update a car
     @PUT
     @Path("/{id}")
     public Response updateCar(@PathParam("id") int id, Car car) {
@@ -56,7 +52,7 @@ public class CarController {
         return Response.status(Response.Status.NOT_FOUND).entity("Car not found").build();
     }
 
-    // Delete a car
+
     @DELETE
     @Path("/{id}")
     public Response deleteCar(@PathParam("id") int id) {

@@ -7,7 +7,7 @@
  <!-- Main Content -->
         <div class="container">
             <h1>Admin Dashboard</h1>
-            <p>Welcome to the admin panel. Here you can manage your application.</p>
+            <p>Welcome to the admin panel.</p>
 
             <!-- Example Cards -->
             <div class="row">
@@ -23,26 +23,18 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Mange Cars</h5>
+                            <h5 class="card-title">Add Cars</h5>
                             <p class="card-text">Manage Cars and Prices.</p>
-                            <a href="addCar.jsp" class="btn btn-primary">Go to Cars</a>
+                            <a href="addCar.jsp" class="btn btn-primary">Add Cars</a>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Settings</h5>
-                            <p class="card-text">Configure system settings.</p>
-                            <a href="#" class="btn btn-primary">Go to Settings</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Mange Cars</h5>
-                            <p class="card-text">Manage Cars and Prices.</p>
+                            <h5 class="card-title">View Cars</h5>
+                            <p class="card-text">See Cars and Prices.</p>
                             <a href="carList.jsp" class="btn btn-primary">See all Cars</a>
                         </div>
                     </div>

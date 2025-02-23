@@ -40,7 +40,7 @@
             <th>Image</th>
             <th>Name</th>
             <th>Category</th>
-            <th>Price</th>
+            <!--<th>Price</th>-->
             <th>Availability</th>
         </tr>
 
@@ -56,13 +56,13 @@
             </td>
             <td><%= car.getName() %></td>
             <td><%= car.getCategory() %></td>
-            <td><%= car.getPrice() %></td>
+            <!--<td><%= car.getPrice() %></td>-->
             <td><%= car.isAvailable() ? "Available" : "Not Available" %></td>
         </tr>
         <% } %>
     </table>
 
     <br>
-    <a href="addCar.jsp">Add New Car</a>
+    <a href="addCar.jsp" class="btn btn-primary">Add New Car</a>
 </body>
 </html>
