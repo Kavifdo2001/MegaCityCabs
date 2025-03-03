@@ -42,6 +42,7 @@
             <th>Category</th>
             <!--<th>Price</th>-->
             <th>Availability</th>
+            <th>Action</th>
         </tr>
 
         <% for (Car car : carList) { %>
@@ -58,6 +59,10 @@
             <td><%= car.getCategory() %></td>
             <!--<td><%= car.getPrice() %></td>-->
             <td><%= car.isAvailable() ? "Available" : "Not Available" %></td>
+            <td> 
+               <a href="deleteCar.jsp?id=<%= car.getId() %>" class="btn btn-warning" onclick="return confirm('Are you sure you want to delete this car?');">Delete</a>
+               <a href="updateCar.jsp?id=<%= car.getId() %>" class="btn btn-success">Update</a>
+            </td>
         </tr>
         <% } %>
     </table>
