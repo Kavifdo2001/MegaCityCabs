@@ -50,7 +50,7 @@
     <body>
         <!-- Navigation Bar -->
         <div class="navbar">
-            <a href="#">Home</a>
+            <a href="${pageContext.request.contextPath}/admin/adminIndex.jsp">Home</a>
             <a href="#">Dashboard</a>
             <a href="#">Settings</a>
             <div style="float: right;">

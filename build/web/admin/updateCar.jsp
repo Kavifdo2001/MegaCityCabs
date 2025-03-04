@@ -18,8 +18,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
-           
+            margin: 0;      
         }
         h2 {
             color: #333;
@@ -87,14 +86,15 @@
 
         <div class="form-group">
             <label for="price">Price:</label>
+             <label for="price"><%= car.getPrice() %>:</label>
             <input type="number" step="0.01" id="price" name="price" value="<%= car.getPrice() %>" required>
         </div>
 
         <div class="form-group">
             <label for="isAvailable">Availability:</label>
             <select id="isAvailable" name="isAvailable">
-                <option value="true" <%= car.isAvailable() ? "selected" : "" %>>Available</option>
-                <option value="false" <%= !car.isAvailable() ? "selected" : "" %>>Not Available</option>
+                <option value="true" <%= car.isAvailable() ? "selected" : "" %> >Available</option>
+                <option value="false" <%= !car.isAvailable() ? "selected" : "" %> >Not Available</option>
             </select>
         </div>
 
