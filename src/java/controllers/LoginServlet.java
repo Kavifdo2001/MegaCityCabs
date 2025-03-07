@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
             String sql = "SELECT id, name, email, password, role FROM users WHERE email = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
-
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
@@ -47,49 +46,36 @@ public class LoginServlet extends HttpServlet {
                 String role = rs.getString("role");
 
                 if (BCrypt.checkpw(password, hashedPassword)) {
+                    int userId = rs.getInt("id");
                     String userName = rs.getString("name");
 
+                    // Store user details in session
                     HttpSession session = request.getSession();
+                    session.setAttribute("loggedUser", userId);
                     session.setAttribute("userName", userName);
                     session.setAttribute("userRole", role);
 
+                    // Redirect user based on role
                     if ("admin".equalsIgnoreCase(role)) {
-//                        response.sendRedirect("admin.jsp"); 
-                        response.sendRedirect(request.getContextPath() + "/admin/adminIndex.jsp"); 
+                        response.sendRedirect(request.getContextPath() + "/admin/adminIndex.jsp");
                     } else {
                         response.sendRedirect("index.jsp");
                     }
                     return;
                 } else {
-                    
                     request.setAttribute("errorMessage", "Invalid email or password.");
                 }
             } else {
-                
                 request.setAttribute("errorMessage", "Invalid email or password.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "An error occurred during login. Please try again.");
         } finally {
-            
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                DBConnection.closeConnection(conn);
-            }
+            // Close resources
+            try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (conn != null) DBConnection.closeConnection(conn); } catch (Exception e) { e.printStackTrace(); }
         }
 
         request.getRequestDispatcher("login.jsp").forward(request, response);

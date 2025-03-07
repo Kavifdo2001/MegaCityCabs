@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
             if (rowsAffected > 0) {
 //                request.setAttribute("successMessage", "Registration successful!");
                 request.getSession().setAttribute("userName", name);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("login.jsp");
                 return;
             } else {
                 request.setAttribute("errorMessage", "Registration failed. Please try again.");

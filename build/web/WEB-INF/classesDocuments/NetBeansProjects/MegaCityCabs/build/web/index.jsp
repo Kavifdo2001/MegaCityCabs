@@ -527,7 +527,8 @@
                                        
                                         <h5><%= car.isAvailable() ? "Available" : "Not Available" %></h5>
                                     </div>
-                                    <a href="#" class="btn btn-primary rounded-pill d-flex justify-content-center py-3">Book Now</a>
+                                        <a href="#" class="btn btn-primary rounded-pill d-flex justify-content-center py-3"
+                                            onclick="checkBooking(<%= car.getId() %>)">Book Now</a>                                
                                 </div>
                             </div>
                         </div>
@@ -593,3 +594,14 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+    <script>
+        function checkBooking(carId) {
+            <% if (session.getAttribute("loggedUser") == null) { %>
+                alert("You must be logged in to book a car!");
+                window.location.href = "login.jsp"; // Redirect to login page
+            <% } else { %>
+                window.location.href = "booking.jsp?carId=" + carId; // Proceed to booking page
+            <% } %>
+        }
+    </script>
