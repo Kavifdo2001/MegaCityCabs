@@ -1,12 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, db.DBConnection" %>
+
 <%
-    // Ensure only admin can access this page
-    
-    // Establish DB Connection
     Connection conn = DBConnection.getConnection();
     PreparedStatement pstmt = conn.prepareStatement(
-        "SELECT b.id, b.booking_number, b.pickup_date, b.return_date, c.name AS car_name, c.category, u.name AS user_name, u.email " +
+        "SELECT b.id, b.booking_number, b.pickup_date, b.return_date, b.destination_from, b.destination_to, " +
+        "b.address, b.contact, b.status, c.name AS car_name, c.category, u.name AS user_name, u.email " +
         "FROM booking b " +
         "JOIN cars c ON b.car_id = c.id " +
         "JOIN users u ON b.user_id = u.id"
@@ -30,8 +29,8 @@
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: 100%;
+            max-width: 1500px;
             margin: 2rem auto;
             background: white;
             padding: 20px;
@@ -59,7 +58,7 @@
 
         th {
             background: #3498db;
-            color: white;
+            color: black;
         }
 
         tr:hover {
@@ -91,66 +90,87 @@
             background: #c0392b;
         }
 
+        .view-btn {
+            background: #3498db;
+        }
+
+        .view-btn:hover {
+            background: #2980b9;
+        }
+
     </style>
 </head>
 <body>
 
     <%@ include file="/admin/layout/adminNav.jsp" %>
 
-    <div class="container">
-        <h2>All Bookings</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Booking Number</th>
-                    <th>User</th>
-                    <th>Email</th>
-                    <th>Car Model</th>
-                    <th>Category</th>
-                    <th>Pick-up Date</th>
-                    <th>Return Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    boolean hasBookings = false;
-                    while (rs.next()) {
-                        hasBookings = true;
-                %>
-                <tr>
-                    <td><%= rs.getInt("id") %></td>
-                    <td><%= rs.getString("booking_number") %></td>
-                    <td><%= rs.getString("user_name") %></td>
-                    <td><%= rs.getString("email") %></td>
-                    <td><%= rs.getString("car_name") %></td>
-                    <td><%= rs.getString("category") %></td>
-                    <td><%= rs.getString("pickup_date") %></td>
-                    <td><%= rs.getString("return_date") %></td>
-                    <td>
-                        <form action="ApproveBookingServlet" method="post" style="display:inline;">
-                            <input type="hidden" name="bookingId" value="<%= rs.getInt("id") %>">
-                            <button type="submit" class="action-btn approve-btn">Approve</button>
-                        </form>
+<div class="container">
+    <h2>All Bookings</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-black">
+            <tr>
+                <th>Booking ID</th>
+                <th>Booking Number</th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Car Model</th>
+                <th>Category</th>
+                <th>Pick-up Date</th>
+                <th>Return Date</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           <%
+                boolean hasBookings = false;
+                while (rs.next()) {
+                    hasBookings = true;
+                    String status = rs.getString("status"); 
+            %>
+            <tr>
+                <td><%= rs.getInt("id") %></td>
+                <td><%= rs.getString("booking_number") %></td>
+                <td><%= rs.getString("user_name") %></td>
+                <td><%= rs.getString("email") %></td>
+                <td><%= rs.getString("car_name") %></td>
+                <td><%= rs.getString("category") %></td>
+                <td><%= rs.getString("pickup_date") %></td>
+                <td><%= rs.getString("return_date") %></td>
+                <td><%= rs.getString("destination_from") %></td>
+                <td><%= rs.getString("destination_to") %></td>
+                <td><%= rs.getString("address") %></td>
+                <td><%= rs.getString("contact") %></td>
+                <td>
+                    <% if ("pending".equalsIgnoreCase(status)) { %>
+                        <a href="approve_booking.jsp?bookingId=<%= rs.getInt("id") %>">
+                            <button class="action-btn approve-btn">Approve</button>
+                        </a>
                         <form action="DeleteBookingServlet" method="post" style="display:inline;">
                             <input type="hidden" name="bookingId" value="<%= rs.getInt("id") %>">
                             <button type="submit" class="action-btn delete-btn">Delete</button>
                         </form>
-                    </td>
-                </tr>
-                <%
-                    }
-                    if (!hasBookings) {
-                %>
-                <tr>
-                    <td colspan="9" style="text-align:center; color: #7f8c8d;">No bookings available.</td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-    </div>
-
+                    <% } else if ("confirmed".equalsIgnoreCase(status)) { %>
+                        <a href="confirmed_bookings.jsp?bookingId=<%= rs.getInt("id") %>">
+                            <button class="action-btn view-btn">View</button>
+                        </a>
+                    <% } %>
+                </td>
+            </tr>
+            <%
+                }
+                if (!hasBookings) {
+            %>
+            <tr>
+                <td colspan="13" class="text-center text-muted">No bookings available.</td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

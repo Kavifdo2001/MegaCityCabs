@@ -9,13 +9,14 @@ public class Booking {
     private int carId;
     private Date pickupDate;
     private Date returnDate;
-    private String driver; 
+    private String driver;
+    private String destinationFrom; 
+    private String destinationTo;
 
-    // Default Constructor
     public Booking() {
     }
 
-    public Booking(int id, String bookingNumber, int userId, int carId, Date pickupDate, Date returnDate, String driver) {
+    public Booking(int id, String bookingNumber, int userId, int carId, Date pickupDate, Date returnDate, String driver, String destinationFrom, String destinationTo) {
         this.id = id;
         this.bookingNumber = bookingNumber;
         this.userId = userId;
@@ -23,9 +24,11 @@ public class Booking {
         this.pickupDate = pickupDate;
         this.returnDate = returnDate;
         this.driver = driver;
+        this.destinationFrom = destinationFrom;
+        this.destinationTo = destinationTo;
     }
 
-    // Getters and Setters
+
     public int getId() {
         return id;
     }
@@ -82,7 +85,23 @@ public class Booking {
         this.driver = driver;
     }
 
-    // To String (for debugging)
+    public String getDestinationFrom() {
+        return destinationFrom;
+    }
+
+    public void setDestinationFrom(String destinationFrom) {
+        this.destinationFrom = destinationFrom;
+    }
+
+    public String getDestinationTo() {
+        return destinationTo;
+    }
+
+    public void setDestinationTo(String destinationTo) {
+        this.destinationTo = destinationTo;
+    }
+
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -93,6 +112,8 @@ public class Booking {
                 ", pickupDate=" + pickupDate +
                 ", returnDate=" + returnDate +
                 ", driver='" + driver + '\'' +
+                ", destinationFrom='" + destinationFrom + '\'' +
+                ", destinationTo='" + destinationTo + '\'' +
                 '}';
     }
 }

@@ -90,6 +90,8 @@
         }
 
         input[type="date"],
+        input[type="text"],
+        input[type="tel"],
         select {
             width: 100%;
             padding: 0.75rem;
@@ -172,6 +174,18 @@
 
             <label for="returnDate">Return Date:</label>
             <input type="date" id="returnDate" name="returnDate" required>
+            
+            <label for="destination_from">Destination From:</label>
+            <input type="text" id="destination_from" name="destination_from" required>
+
+            <label for="destination_to">Destination To:</label>
+            <input type="text" id="destination_to" name="destination_to" required>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="contact">Telephone:</label>
+            <input type="tel" id="contact" name="contact" required>
 
             <label for="driver">Driver Required:</label>
             <select id="driver" name="driver" required>
