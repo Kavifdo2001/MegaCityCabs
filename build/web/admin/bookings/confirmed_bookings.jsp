@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Booking Receipt</title>
+        <title>Booking View</title>
         <style>
             body {
                 font-family: Arial, sans-serif;

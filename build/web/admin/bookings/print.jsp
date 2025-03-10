@@ -1,10 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*, db.DBConnection, java.text.DecimalFormat, java.text.SimpleDateFormat" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Booking View</title>
+        <title>Booking Receipt</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -80,7 +81,7 @@
         </style>
     </head>
     <body>
-        <%@ include file="/admin/layout/adminNav.jsp" %>
+       
         <div class="container">
             
             <h1>Booking Details</h1>
@@ -203,12 +204,7 @@
                     }
                 }
             %>
-            <div class="back-btn">
-                <a href="confirm_bookings.jsp">Back to Bookings</a>
-            </div>
-            <div class="print-btn">
-                <button onclick="window.print()">Print Receipt</button>
-            </div>
+
             <div class="footer">
                 <p>Thank you for choosing us! For any queries, contact us at support@example.com.</p>
             </div>

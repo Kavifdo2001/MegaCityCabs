@@ -73,7 +73,7 @@
             color: white;
             transition: 0.3s;
         }
-
+       
         .approve-btn {
             background: #2ecc71;
         }
@@ -93,6 +93,10 @@
         .view-btn {
             background: #3498db;
         }
+        
+        .print-btn {
+            background: black;
+        }
 
         .view-btn:hover {
             background: #2980b9;
@@ -104,7 +108,7 @@
 
     <%@ include file="/admin/layout/adminNav.jsp" %>
 
-<div class="container">
+<div class="p-2">
     <h2>All Bookings</h2>
     <table class="table table-bordered table-striped">
         <thead class="thead-black">
@@ -157,6 +161,13 @@
                         <a href="confirmed_bookings.jsp?bookingId=<%= rs.getInt("id") %>">
                             <button class="action-btn view-btn">View</button>
                         </a>
+<!--                        <a href="print.jsp?bookingId=<%= rs.getInt("id") %>">
+                            <button class="action-btn print-btn">Print</button>
+                        </a>-->
+                        
+                        <a href="javascript:void(0);" onclick="printBooking('<%= rs.getInt("id") %>')">
+                            <button class="action-btn print-btn">Print</button>
+                        </a>
                     <% } %>
                 </td>
             </tr>
@@ -173,6 +184,18 @@
 </div>
 
 </body>
+<script>
+    function printBooking(bookingId) {
+        // Open print.jsp in a new window
+        const printWindow = window.open('print.jsp?bookingId=' + bookingId, '_blank');
+
+        // Wait for the new window to load
+        printWindow.onload = function () {
+            // Trigger the print dialog
+            printWindow.print();
+        };
+    }
+</script>
 </html>
 
 <%

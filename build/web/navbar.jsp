@@ -8,7 +8,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Cental - Car Rent Website Template</title>
+        <title>Mega City Cabs</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -73,10 +73,11 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto py-0">
-                            <a href="index.jsp" class="nav-item nav-link active">Home</a>
-                            <a href="about.jsp" class="nav-item nav-link">About</a>
-                            <a href="service.jsp" class="nav-item nav-link">Service</a>              
-                            <a href="contact.jsp" class="nav-item nav-link">Contact</a>
+                            <a href="index.jsp" class="nav-item nav-link" id="home-link">Home</a>
+                            <a href="about.jsp" class="nav-item nav-link" id="about-link">About</a>
+                            <a href="vehicles.jsp" class="nav-item nav-link" id="vehicles-link">Vehicles</a>
+                            <a href="service.jsp" class="nav-item nav-link" id="service-link">Service</a>
+                            <a href="contact.jsp" class="nav-item nav-link" id="contact-link">Contact</a>
                         </div>
 
                         <div>
@@ -109,6 +110,33 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+    
+    <script>
+        // Function to highlight the active link
+        function setActiveLink() {
+            // Get the current URL path
+            const currentPath = window.location.pathname.split('/').pop();
+
+            // Map of page names to link IDs
+            const pageToLinkMap = {
+                'index.jsp': 'home-link',
+                'about.jsp': 'about-link',
+                'vehicles.jsp': 'vehicles-link',
+                'service.jsp': 'service-link',
+                'contact.jsp': 'contact-link'
+            };
+
+            // Find the corresponding link and add the 'active' class
+            const activeLinkId = pageToLinkMap[currentPath];
+            if (activeLinkId) {
+                document.getElementById(activeLinkId).classList.add('active');
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = setActiveLink;
+    </script>
     
   
     </body>

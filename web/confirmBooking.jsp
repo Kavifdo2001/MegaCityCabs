@@ -20,7 +20,6 @@
         return;
     }
 
-    // Generate a unique booking number
     String bookingNumber = "BOOK-" + System.currentTimeMillis();
 
     Connection conn = null;
