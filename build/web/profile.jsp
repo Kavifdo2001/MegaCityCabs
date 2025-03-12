@@ -23,7 +23,7 @@
 <%
     // Fetch user bookings with car name
     PreparedStatement pstmtBookings = conn.prepareStatement(
-        "SELECT b.id, b.booking_number,b.pickup_date,b.return_date, c.name , c.category " +
+        "SELECT b.id, b.booking_number,b.pickup_date,b.return_date,b.status, c.name , c.category " +
         "FROM booking b " +
         "JOIN cars c ON b.car_id = c.id " +
         "WHERE b.user_id = ?"
@@ -199,6 +199,25 @@
         td {
             color: #34495e;
         }
+         .action-btn {
+            padding: 6px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            transition: 0.3s;
+            background-color:blue;
+        }
+        
+        .print-btn {
+            padding: 6px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            transition: 0.3s;
+            background-color: grey;
+        }
 
         @media (max-width: 768px) {
             .profile-container {
@@ -248,13 +267,15 @@
                     <th>Pick-up Date</th>
                     <th>Return Date</th>
                     <th>Category</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+             <tbody>
                 <%
                     boolean hasBookings = false;
                     while (rsBookings.next()) {
                         hasBookings = true;
+                        String status = rsBookings.getString("status"); // Get the booking status
                 %>
                 <tr>
                     <td><%= rsBookings.getInt("id") %></td>
@@ -263,13 +284,24 @@
                     <td><%= rsBookings.getString("pickup_date") %></td>
                     <td><%= rsBookings.getString("return_date") %></td>
                     <td><%= rsBookings.getString("category") %></td>
+                    <td>
+                        <% if ("confirmed".equalsIgnoreCase(status)) { %>
+                            <!-- Show Print button only if status is confirmed -->
+                            <a href="javascript:void(0);" onclick="printBooking('<%= rsBookings.getInt("id") %>')">
+                                <button class="action-btn ">Print</button>
+                            </a>
+                        <% } else { %>
+                            <!-- Show a disabled button or a message for other statuses -->
+                            <button class=" print-btn" disabled>Print</button>
+                        <% } %>
+                    </td>
                 </tr>
                 <%
                     }
                     if (!hasBookings) {
                 %>
                 <tr>
-                    <td colspan="6" style="text-align: center; color: #7f8c8d;">No bookings found.</td>
+                    <td colspan="7" style="text-align: center; color: #7f8c8d;">No bookings found.</td>
                 </tr>
                 <% } %>
             </tbody>
@@ -281,6 +313,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    
+    <script>
+    function printBooking(bookingId) {
+        // Open print.jsp in a new window
+        const printWindow = window.open('print_booking.jsp?bookingId=' + bookingId, '_blank');
+
+        // Wait for the new window to load
+        printWindow.onload = function () {
+            // Trigger the print dialog
+            printWindow.print();
+        };
+    }
+</script>
 </body>
 </html>
 

@@ -1,52 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!--<style>
-    /* Ensure the footer stays at the bottom */
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content {
-        flex: 1; /* Pushes the footer to the bottom */
-    }
-
-    /* Styled Footer */
-    footer {
-        background: linear-gradient(to right, #2c3e50, #34495e); /* Stylish gradient */
-        color: white;
-        text-align: center;
-        padding: 15px 20px;
-        font-size: 14px;
-        width: 100%;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Footer Hover Effect */
-    footer:hover {
-        background: linear-gradient(to right, #34495e, #2c3e50);
-    }
-
-    /* Footer Links */
-    footer a {
-        color: #f1c40f; /* Yellow for contrast */
-        text-decoration: none;
-        margin: 0 10px;
-        font-weight: bold;
-        transition: color 0.3s;
-    }
-
-    footer a:hover {
-        color: #ecf0f1; /* Light gray */
-    }
-</style>-->
-
-
 <!-- Back to Top -->
         <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
 
@@ -55,18 +7,7 @@
         <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <div class="footer-item">
-                                <h4 class="text-white mb-4">About Us</h4>
-                                <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="position-relative">
-                                <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
-                                <button type="button" class="btn btn-secondary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="text-white mb-4">Quick Links</h4>

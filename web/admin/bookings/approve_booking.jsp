@@ -145,7 +145,7 @@
                 </div>
                 <% if ("yes".equalsIgnoreCase(driver)) { %>
                 <div class="detail-item">
-                    <label>Driver Cost:</label> <span class="value">LKR 10</span>
+                    <label>Driver Cost:</label> <span class="value">LKR 2000</span>
                 </div>
                 <% } %>
                 
@@ -219,7 +219,7 @@
         $("#kilometers").on("input", function() {
             var kilometers = $(this).val();
             var pricePerKm = parseFloat($("input[name='car_price']").val());
-            var driverCost = $("input[name='driver']").val() === "yes" ? 10 : 0;
+            var driverCost = $("input[name='driver']").val() === "yes" ? 2000 : 0;
 
             if (kilometers && kilometers > 0) {
                 var total = (kilometers * pricePerKm) + driverCost;
@@ -236,7 +236,7 @@
         function calculateTotal() {
             var kilometers = parseFloat($("#kilometers").val()) || 0;
             var pricePerKm = parseFloat($("input[name='car_price']").val()) || 0;
-            var driverCost = $("input[name='driver']").val() === "yes" ? 10 : 0;
+            var driverCost = $("input[name='driver']").val() === "yes" ? 2000 : 0;
             var discount = parseFloat($("#discount").val()) || 0;
             var tax = parseFloat($("#tax").val()) || 0;
 

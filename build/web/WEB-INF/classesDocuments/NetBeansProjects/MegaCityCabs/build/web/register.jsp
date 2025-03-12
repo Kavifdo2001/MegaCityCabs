@@ -124,6 +124,15 @@
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
+            
+            <label for="email">Address:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="email">Telephone:</label>
+            <input type="text" id="contact" name="contact" required> 
+            
+            <label for="email">NIC:</label>
+            <input type="text" id="nic" name="nic" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>

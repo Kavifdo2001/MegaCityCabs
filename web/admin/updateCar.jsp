@@ -86,8 +86,7 @@
 
         <div class="form-group">
             <label for="price">Price:</label>
-             <label for="price"><%= car.getPrice() %>:</label>
-            <input type="number" step="0.01" id="price" name="price" value="<%= car.getPrice() %>" required>
+            <input type="number"  id="price" name="price" value="<%= car.getPrice() %>" required>
         </div>
 
         <div class="form-group">

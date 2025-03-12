@@ -49,6 +49,7 @@ public class CarService {
                     car = new Car();
                     car.setId(rs.getInt("id"));
                     car.setName(rs.getString("name"));
+                     car.setPrice(rs.getDouble("price"));
                     car.setCategory(rs.getString("category"));
                     car.setAvailable(rs.getBoolean("is_available"));
                     car.setImage(rs.getString("image"));
@@ -60,20 +61,23 @@ public class CarService {
         return car;
     }
 
-    // Update a car
+
     public boolean updateCar(Car car) {
-        String query = "UPDATE cars SET name = ?, category = ?, is_available = ?, image = ? WHERE id = ?";
+
+        String query = "UPDATE cars SET name = ?, category = ?, price = ?, is_available = ?, image = ? WHERE id = ?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setString(1, car.getName());
             ps.setString(2, car.getCategory());
-            ps.setBoolean(3, car.isAvailable());
-            ps.setString(4, car.getImage());
-            ps.setInt(5, car.getId());
+            ps.setDouble(3, car.getPrice()); 
+            ps.setBoolean(4, car.isAvailable());
+            ps.setString(5, car.getImage());
+            ps.setInt(6, car.getId());
 
             int rowsUpdated = ps.executeUpdate();
+
             return rowsUpdated > 0;
         } catch (Exception e) {
             e.printStackTrace();

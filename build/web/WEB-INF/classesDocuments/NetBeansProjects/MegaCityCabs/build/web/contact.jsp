@@ -20,8 +20,8 @@
                         <i class="fa fa-phone-alt fa-2x"></i>
                     </div>
                     <h5 class="mb-3">Call Us</h5>
-                    <p class="mb-0">+1 (123) 456-7890</p>
-                    <p class="mb-0">+1 (987) 654-3210</p>
+                    <p class="mb-0">+97 77 456-7890</p>
+                    
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -30,8 +30,8 @@
                         <i class="fa fa-envelope fa-2x"></i>
                     </div>
                     <h5 class="mb-3">Email Us</h5>
-                    <p class="mb-0">support@example.com</p>
-                    <p class="mb-0">info@example.com</p>
+                    <p class="mb-0">mccabs@gmail.com</p>
+                    
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
@@ -40,8 +40,8 @@
                         <i class="fa fa-map-marker-alt fa-2x"></i>
                     </div>
                     <h5 class="mb-3">Visit Us</h5>
-                    <p class="mb-0">123 Main Street, Suite 456</p>
-                    <p class="mb-0">New York, NY 10001, USA</p>
+                    <p class="mb-0">123 Main Street, Lotus Tower</p>
+                    <p class="mb-0">Colombo, Sri Lanka</p>
                 </div>
             </div>
         </div>

@@ -72,11 +72,12 @@
                         <span class="fa fa-bars"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <div class="navbar-nav mx-auto py-0">
+                        <div class="navbar-nav mx-auto py-0"> 
                             <a href="index.jsp" class="nav-item nav-link" id="home-link">Home</a>
                             <a href="about.jsp" class="nav-item nav-link" id="about-link">About</a>
                             <a href="vehicles.jsp" class="nav-item nav-link" id="vehicles-link">Vehicles</a>
                             <a href="service.jsp" class="nav-item nav-link" id="service-link">Service</a>
+                             <a href="help.jsp" class="nav-item nav-link" id="help-link">Guide</a>
                             <a href="contact.jsp" class="nav-item nav-link" id="contact-link">Contact</a>
                         </div>
 
@@ -124,7 +125,8 @@
                 'about.jsp': 'about-link',
                 'vehicles.jsp': 'vehicles-link',
                 'service.jsp': 'service-link',
-                'contact.jsp': 'contact-link'
+                'contact.jsp': 'contact-link',
+                'help.jsp': 'help-link'
             };
 
             // Find the corresponding link and add the 'active' class

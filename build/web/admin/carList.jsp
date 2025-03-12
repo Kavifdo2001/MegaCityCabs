@@ -28,7 +28,11 @@
 
  <%@ include file="/admin/layout/adminNav.jsp" %>
     <h2>Car List</h2>
-
+    
+           
+         <a href="addCar.jsp" class="btn btn-primary add-car-btn">Add new Cars</a>
+         <br>
+              
     <%
         CarService carService = new CarService();
         List<Car> carList = carService.getAllCars();
@@ -40,7 +44,7 @@
             <th>Image</th>
             <th>Name</th>
             <th>Category</th>
-            <!--<th>Price</th>-->
+            <th>Price</th>
             <th>Availability</th>
             <th>Action</th>
         </tr>
@@ -57,7 +61,7 @@
             </td>
             <td><%= car.getName() %></td>
             <td><%= car.getCategory() %></td>
-            <!--<td><%= car.getPrice() %></td>-->
+            <td><%= car.getPrice() %></td>
             <td><%= car.isAvailable() ? "Available" : "Not Available" %></td>
             <td> 
                <a href="deleteCar.jsp?id=<%= car.getId() %>" class="btn btn-warning" onclick="return confirm('Are you sure you want to delete this car?');">Delete</a>

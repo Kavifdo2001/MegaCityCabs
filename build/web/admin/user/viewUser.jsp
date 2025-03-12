@@ -107,6 +107,8 @@
                 %>
             </tbody>
         </table>
+            
+            <a href="addUser.jsp" class="btn btn-primary">Add Users</a>
     </div>
 
     <!-- Bootstrap JS (Optional, if needed for other components) -->

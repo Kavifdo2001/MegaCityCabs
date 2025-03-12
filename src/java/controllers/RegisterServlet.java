@@ -22,6 +22,9 @@ public class RegisterServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String address = request.getParameter("address");
+        String contact = request.getParameter("contact");
+        String nic = request.getParameter("nic");
 
         // Validate form data (basic validation)
         if (name == null || name.trim().isEmpty() || email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
@@ -38,11 +41,15 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             conn = DBConnection.getConnection();
-            String sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (name, email, password, address, contact, nic) VALUES (?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
             pstmt.setString(2, email);
             pstmt.setString(3, hashedPassword);
+            pstmt.setString(4, address);
+            pstmt.setString(5, contact);
+            pstmt.setString(6, nic);
+            
 
             int rowsAffected = pstmt.executeUpdate();
 

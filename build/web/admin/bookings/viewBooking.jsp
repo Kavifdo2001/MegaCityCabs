@@ -153,10 +153,7 @@
                         <a href="approve_booking.jsp?bookingId=<%= rs.getInt("id") %>">
                             <button class="action-btn approve-btn">Approve</button>
                         </a>
-                        <form action="DeleteBookingServlet" method="post" style="display:inline;">
-                            <input type="hidden" name="bookingId" value="<%= rs.getInt("id") %>">
-                            <button type="submit" class="action-btn delete-btn">Delete</button>
-                        </form>
+                        
                     <% } else if ("confirmed".equalsIgnoreCase(status)) { %>
                         <a href="confirmed_bookings.jsp?bookingId=<%= rs.getInt("id") %>">
                             <button class="action-btn view-btn">View</button>
